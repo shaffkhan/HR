@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function InterviewChatbot() {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-white p-4 md:p-8">
+    <div className="w-full flex flex-col md:flex-row items-center justify-center min-h-screen bg-white p-4 md:p-8">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
