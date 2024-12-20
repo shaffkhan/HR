@@ -6,17 +6,17 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/basic-info')
+    router.push("/basic-info");
     console.log("Sign in:", { email, password, rememberMe });
   };
 
@@ -61,7 +61,7 @@ export default function SignIn() {
             Remember me
           </Label>
         </div>
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full bg-[#2d3e50]">
           Sign In
         </Button>
       </form>
@@ -71,7 +71,7 @@ export default function SignIn() {
         </a>
       </div>
       <div className="text-center">
-        <span className="text-sm text-gray-600">Don't have an account? </span>
+        <span className="text-sm text-gray-600">New Here?</span>
         <a href="/signup" className="text-sm text-blue-600 hover:underline">
           Sign Up
         </a>
