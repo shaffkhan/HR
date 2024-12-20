@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 export default function SpecificInfo() {
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
@@ -12,7 +12,7 @@ export default function SpecificInfo() {
   const [photoBlob, setPhotoBlob] = useState<Blob | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const router = useRouter()
+  const router = useRouter();
 
   const startRecording = async () => {
     try {
@@ -91,7 +91,7 @@ export default function SpecificInfo() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/interview')
+    router.push("/interview");
     console.log("Form submitted:", { audioBlob, photoBlob });
   };
 
@@ -100,14 +100,14 @@ export default function SpecificInfo() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white shadow-xl rounded-lg p-8 space-y-6"
+      className="bg-white shadow-xl rounded-lg p-8 space-y-6 max-w-2xl mx-auto"
     >
-      <h1 className="text-3xl font-bold text-center text-gray-800">
+      <h1 className="text-3xl font-bold text-center text-[#2c3e50]">
         Specific Information
       </h1>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-4">
-          <Label className="text-lg font-semibold">
+          <Label className="text-lg font-semibold text-[#2c3e50]">
             Audio Message Recording
           </Label>
           <p className="text-sm text-gray-600">
@@ -119,6 +119,7 @@ export default function SpecificInfo() {
               type="button"
               onClick={startRecording}
               disabled={isRecording}
+              className="bg-[#2c3e50] hover:bg-[#34495e] text-white"
             >
               Start Recording
             </Button>
@@ -126,6 +127,7 @@ export default function SpecificInfo() {
               type="button"
               onClick={stopRecording}
               disabled={!isRecording}
+              className="bg-[#2c3e50] hover:bg-[#34495e] text-white"
             >
               Stop Recording
             </Button>
@@ -139,34 +141,47 @@ export default function SpecificInfo() {
           )}
         </div>
         <div className="space-y-4">
-          <Label className="text-lg font-semibold">Fresh Photo Capture</Label>
+          <Label className="text-lg font-semibold text-[#2c3e50]">
+            Fresh Photo Capture
+          </Label>
           <p className="text-sm text-gray-600">
             Take a fresh photo for facial identification during later stages of
             the interview process.
           </p>
           <div className="space-y-4">
-            <Button type="button" onClick={startCamera}>
+            <Button
+              type="button"
+              onClick={startCamera}
+              className="bg-[#2c3e50] hover:bg-[#34495e] text-white"
+            >
               Start Camera
             </Button>
             <video
               ref={videoRef}
               autoPlay
               muted
-              className="w-full h-64 bg-gray-200"
+              className="w-full h-64 bg-gray-200 rounded-lg"
             />
-            <Button type="button" onClick={capturePhoto}>
+            <Button
+              type="button"
+              onClick={capturePhoto}
+              className="bg-[#2c3e50] hover:bg-[#34495e] text-white"
+            >
               Capture Photo
             </Button>
             {photoBlob && (
               <img
                 src={URL.createObjectURL(photoBlob)}
                 alt="Captured"
-                className="w-full h-64 object-cover"
+                className="w-full h-64 object-cover rounded-lg"
               />
             )}
           </div>
         </div>
-        <Button type="submit" className="w-full">
+        <Button
+          type="submit"
+          className="w-full bg-[#2c3e50] hover:bg-[#34495e] text-white"
+        >
           Submit Specific Information
         </Button>
       </form>
