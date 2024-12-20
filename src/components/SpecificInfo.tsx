@@ -112,7 +112,7 @@ export default function SpecificInfo() {
           </Label>
           <p className="text-sm text-gray-600">
             Please record a 10-second audio message introducing yourself and
-            explaining why you're a great fit for this role.
+            explaining why you are a great fit for this role.
           </p>
           <div className="flex space-x-4">
             <Button

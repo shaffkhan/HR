@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
 
 import { useState } from "react";
@@ -16,7 +17,6 @@ export default function SignUp() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle sign-up logic here
     console.log("Sign up:", {
       fullName,
       email,
@@ -93,7 +93,7 @@ export default function SignUp() {
             </a>
           </Label>
         </div>
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full bg-[#2d3e50]">
           Sign Up
         </Button>
       </form>

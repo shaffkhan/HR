@@ -1,10 +1,9 @@
-import BasicInfo from '@/components/BasicInfo'
+import StepperForm from "@/components/StepperForm";
 
 export default function BasicInfoPage() {
   return (
     <div className="w-full max-w-2xl">
-      <BasicInfo />
+      <StepperForm />
     </div>
-  )
+  );
 }
-
