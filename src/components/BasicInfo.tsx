@@ -13,10 +13,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 export default function BasicInfo() {
-  const router = useRouter()
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -48,6 +48,7 @@ export default function BasicInfo() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setFormData(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (prev) => ({ ...prev, resume: e.target.files?.[0] || null } as any)
       );
     }
@@ -55,7 +56,7 @@ export default function BasicInfo() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/specific-info')
+    router.push("/specific-info");
     console.log("Form submitted:", formData);
   };
 
@@ -225,7 +226,7 @@ export default function BasicInfo() {
             required
           />
         </div>
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <Label htmlFor="desiredRole">Desired Role</Label>
           <Select
             onValueChange={(value) =>
@@ -242,7 +243,7 @@ export default function BasicInfo() {
               <SelectItem value="Data Scientist">Data Scientist</SelectItem>
             </SelectContent>
           </Select>
-        </div>
+        </div> */}
 
         <div className="space-y-2">
           <Label htmlFor="linkedinProfile">LinkedIn Profile URL</Label>
