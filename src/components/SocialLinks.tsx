@@ -42,7 +42,7 @@ export function SocialLinks({ value, onChange, options }: SocialLinksProps) {
 
   return (
     <div className="space-y-2">
-      {Object.entries(value).map(([socialMedia, url]) => (
+      {Object.entries(value || {}).map(([socialMedia, url]) => (
         <div key={socialMedia} className="flex items-center space-x-2">
           <Input
             value={url}
@@ -84,7 +84,7 @@ export function SocialLinks({ value, onChange, options }: SocialLinksProps) {
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value[option.value] ? "opacity-100" : "opacity-0"
+                      value?.[option.value] ? "opacity-100" : "opacity-0"
                     )}
                   />
                   {option.label}

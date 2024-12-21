@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { Send, ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface Message {
   id: number;
@@ -23,6 +24,7 @@ export default function ChatInterface() {
   const [showPopup, setShowPopup] = useState(false);
   const [userMessageCount, setUserMessageCount] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     setMessages([
@@ -37,7 +39,7 @@ export default function ChatInterface() {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    if (userMessageCount > 0 && userMessageCount % 10 === 0) {
+    if (userMessageCount > 0 && userMessageCount % 3 === 0) {
       setShowPopup(true);
     }
   }, [messages, userMessageCount]);
@@ -76,7 +78,7 @@ export default function ChatInterface() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto h-screen flex flex-col relative rounded-[5%] overflow-hidden">
+    <div className="max-w-2xl mx-auto h-[650px] flex flex-col relative rounded-[5%] overflow-hidden">
       <header className="bg-[#2d3e50] p-4 flex items-center gap-3">
         <Avatar className="h-10 w-10 bg-white/10">
           <AvatarImage
@@ -198,7 +200,9 @@ export default function ChatInterface() {
               You have passed the initial chatbot
             </p>
             <Button
-              onClick={() => setShowPopup(false)}
+              onClick={() => {
+                setShowPopup(false), router.push("/post-interview");
+              }}
               className="w-full bg-[#2d3e50] hover:bg-[#1d2b3a] text-white"
             >
               Click to move forward <ArrowRight className="ml-2 h-4 w-4" />
