@@ -154,7 +154,7 @@ export default function ProfessionalDetails({
             <div key={option.id} className="flex items-center space-x-2">
               <Checkbox
                 id={option.id}
-                checked={formData.workMode.includes(option.id)}
+                checked={formData?.workMode?.includes(option.id)}
                 onCheckedChange={(checked) =>
                   handleWorkModeChange(checked as boolean, option.id)
                 }
