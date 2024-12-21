@@ -48,6 +48,7 @@ export default function PersonalDetails({
           value={formData.fullName}
           onChange={(e) => updateFormData({ fullName: e.target.value })}
           required
+          placeholder="Enter Full Name"
         />
       </div>
       <div className="space-y-2">
@@ -58,6 +59,7 @@ export default function PersonalDetails({
           value={formData.email}
           onChange={(e) => updateFormData({ email: e.target.value })}
           required
+          placeholder="Enter Email"
         />
       </div>
       <div className="space-y-2">
@@ -68,10 +70,11 @@ export default function PersonalDetails({
           value={formData.phone}
           onChange={(e) => updateFormData({ phone: e.target.value })}
           required
+          placeholder="Enter Phone Number"
         />
       </div>
       <div className="space-y-2">
-        <Label htmlFor="alternativeNumber">Alternative Number</Label>
+        <Label htmlFor="alternativeNumber">Alternative Number (Optional)</Label>
         <Input
           id="alternativeNumber"
           type="tel"
@@ -79,6 +82,7 @@ export default function PersonalDetails({
           onChange={(e) =>
             updateFormData({ alternativeNumber: e.target.value })
           }
+          placeholder="Enter Alternative Number"
         />
       </div>
       <div className="space-y-2">
@@ -102,7 +106,7 @@ export default function PersonalDetails({
           onValueChange={(value: any) => updateFormData({ nationality: value })}
         >
           <SelectTrigger id="nationality">
-            <SelectValue placeholder="Select nationality" />
+            <SelectValue placeholder="Select Nationality" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="usa">American</SelectItem>
@@ -118,7 +122,7 @@ export default function PersonalDetails({
           onValueChange={(value) => updateFormData({ country: value })}
         >
           <SelectTrigger id="country">
-            <SelectValue placeholder="Select a country" />
+            <SelectValue placeholder="Select a Country" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="usa">United States</SelectItem>
@@ -134,7 +138,7 @@ export default function PersonalDetails({
           onValueChange={(value) => updateFormData({ state: value })}
         >
           <SelectTrigger id="state">
-            <SelectValue placeholder="Select a state" />
+            <SelectValue placeholder="Select a State" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="ny">New York</SelectItem>
@@ -150,7 +154,7 @@ export default function PersonalDetails({
           onValueChange={(value) => updateFormData({ city: value })}
         >
           <SelectTrigger id="city">
-            <SelectValue placeholder="Select a city" />
+            <SelectValue placeholder="Select a City" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="nyc">New York City</SelectItem>
@@ -166,6 +170,7 @@ export default function PersonalDetails({
           value={formData.currentLocation}
           onChange={(e) => updateFormData({ currentLocation: e.target.value })}
           required
+          placeholder="Enter Current Location"
         />
       </div>
 
@@ -176,6 +181,7 @@ export default function PersonalDetails({
           value={formData.address}
           onChange={(e) => updateFormData({ address: e.target.value })}
           required
+          placeholder="Enter Address"
         />
       </div>
       <div className="space-y-2">
@@ -185,7 +191,7 @@ export default function PersonalDetails({
           onValueChange={(value) => updateFormData({ timeZone: value })}
         >
           <SelectTrigger id="timeZone">
-            <SelectValue placeholder="Select a time zone" />
+            <SelectValue placeholder="Select a Time Zone" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="GMT">GMT</SelectItem>
@@ -229,6 +235,7 @@ export default function PersonalDetails({
           type="url"
           value={formData.personalWebsite}
           onChange={(e) => updateFormData({ personalWebsite: e.target.value })}
+          placeholder="Enter Link"
         />
       </div>
       <div className="space-y-2">
@@ -238,7 +245,7 @@ export default function PersonalDetails({
           onValueChange={(value) => updateFormData({ educationLevel: value })}
         >
           <SelectTrigger id="educationLevel">
-            <SelectValue placeholder="Select education level" />
+            <SelectValue placeholder="Select Education Level" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="matric">Matric</SelectItem>
@@ -256,6 +263,7 @@ export default function PersonalDetails({
           value={formData.educationType}
           onChange={(e) => updateFormData({ educationType: e.target.value })}
           required
+          placeholder="Enter Education Type"
         />
       </div>
     </div>
