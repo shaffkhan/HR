@@ -9,9 +9,9 @@ import PersonalDetails from "./PersonalDetails";
 import ProfessionalDetails from "./ProfessionalDetails";
 
 const steps = [
+  "Document Uploads",
   "Personal Details",
   "Professional Details",
-  "Document Uploads",
   "General Questions",
 ];
 
@@ -63,21 +63,21 @@ export default function StepperForm() {
     switch (currentStep) {
       case 0:
         return (
-          <PersonalDetails
+          <DocumentUploads
             formData={formData}
             updateFormData={updateFormData}
           />
         );
       case 1:
         return (
-          <ProfessionalDetails
+          <PersonalDetails
             formData={formData}
             updateFormData={updateFormData}
           />
         );
       case 2:
         return (
-          <DocumentUploads
+          <ProfessionalDetails
             formData={formData}
             updateFormData={updateFormData}
           />
