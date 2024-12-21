@@ -180,7 +180,9 @@ export default function ProfessionalDetails({
         <Label>Proficiency Level</Label>
         <RadioGroup
           value={formData.proficiencyLevel}
-          onValueChange={(value: any) => updateFormData({ proficiencyLevel: value })}
+          onValueChange={(value: any) =>
+            updateFormData({ proficiencyLevel: value })
+          }
           className="flex space-x-4"
         >
           <div className="flex items-center space-x-2">
