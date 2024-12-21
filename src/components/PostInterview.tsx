@@ -22,10 +22,10 @@ export default function PostInterview() {
   const [showEmailDialog, setShowEmailDialog] = useState(false);
   const [email, setEmail] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   const handleNextInterview = () => {
-    router.push('/avatar-interview');
+    router.push("/avatar-interview");
     console.log("Taking next interview");
   };
 
@@ -106,7 +106,7 @@ export default function PostInterview() {
               Enter Your Email
             </DialogTitle>
             <DialogDescription>
-              We'll send you a confirmation of your scheduled interview.
+              We will send you a confirmation of your scheduled interview.
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleSendEmail}>

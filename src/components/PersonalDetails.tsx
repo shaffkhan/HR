@@ -9,17 +9,28 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CalendarIcon } from "lucide-react";
+import { MultiSelect } from "./MultiSelect";
+import { SocialLinks } from "./SocialLinks";
 
 interface PersonalDetailsProps {
   formData: {
     fullName: string;
     email: string;
     phone: string;
+    alternativeNumber: string;
     dateOfBirth: string;
-    city: string;
-    state: string;
+    timeZone: string;
     country: string;
+    state: string;
+    city: string;
     address: string;
+    nationality: string[];
+    currentLocation: string;
+    languages: string[];
+    socialLinks: { [key: string]: string };
+    personalWebsite: string;
+    educationLevel: string;
+    educationType: string;
   };
   updateFormData: (data: Partial<PersonalDetailsProps["formData"]>) => void;
 }
@@ -29,7 +40,7 @@ export default function PersonalDetails({
   updateFormData,
 }: PersonalDetailsProps) {
   return (
-    <div className="space-y-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="space-y-2">
         <Label htmlFor="fullName">Full Name</Label>
         <Input
@@ -60,6 +71,17 @@ export default function PersonalDetails({
         />
       </div>
       <div className="space-y-2">
+        <Label htmlFor="alternativeNumber">Alternative Number</Label>
+        <Input
+          id="alternativeNumber"
+          type="tel"
+          value={formData.alternativeNumber}
+          onChange={(e) =>
+            updateFormData({ alternativeNumber: e.target.value })
+          }
+        />
+      </div>
+      <div className="space-y-2">
         <Label htmlFor="dateOfBirth">Date of Birth</Label>
         <div className="relative">
           <CalendarIcon className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -74,20 +96,31 @@ export default function PersonalDetails({
         </div>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="city">City</Label>
+        <Label htmlFor="nationality">Nationality</Label>
+        <MultiSelect
+          id="nationality"
+          options={[
+            { value: "usa", label: "American" },
+            { value: "uk", label: "British" },
+            { value: "canada", label: "Canadian" },
+          ]}
+          value={formData.nationality}
+          onChange={(value: never) => updateFormData({ nationality: value })}
+        />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="country">Country</Label>
         <Select
-          value={formData.city}
-          onValueChange={(value) => updateFormData({ city: value })}
+          value={formData.country}
+          onValueChange={(value) => updateFormData({ country: value })}
         >
-          <SelectTrigger id="city">
-            <SelectValue placeholder="Select a city" />
+          <SelectTrigger id="country">
+            <SelectValue placeholder="Select a country" />
           </SelectTrigger>
           <SelectContent>
-            {/* Add city options here */}
-            <SelectItem value="new-york">New York</SelectItem>
-            <SelectItem value="london">London</SelectItem>
-            <SelectItem value="tokyo">Tokyo</SelectItem>
-            {/* Add more cities as needed */}
+            <SelectItem value="usa">United States</SelectItem>
+            <SelectItem value="uk">United Kingdom</SelectItem>
+            <SelectItem value="canada">Canada</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -101,38 +134,125 @@ export default function PersonalDetails({
             <SelectValue placeholder="Select a state" />
           </SelectTrigger>
           <SelectContent>
-            {/* Add state options here */}
-            <SelectItem value="new-york">New York</SelectItem>
-            <SelectItem value="california">California</SelectItem>
-            <SelectItem value="texas">Texas</SelectItem>
-            {/* Add more states as needed */}
+            <SelectItem value="ny">New York</SelectItem>
+            <SelectItem value="ca">California</SelectItem>
+            <SelectItem value="tx">Texas</SelectItem>
           </SelectContent>
         </Select>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="country">Country</Label>
+        <Label htmlFor="city">City</Label>
         <Select
-          value={formData.country}
-          onValueChange={(value) => updateFormData({ country: value })}
+          value={formData.city}
+          onValueChange={(value) => updateFormData({ city: value })}
         >
-          <SelectTrigger id="country">
-            <SelectValue placeholder="Select a country" />
+          <SelectTrigger id="city">
+            <SelectValue placeholder="Select a city" />
           </SelectTrigger>
           <SelectContent>
-            {/* Add country options here */}
-            <SelectItem value="usa">United States</SelectItem>
-            <SelectItem value="uk">United Kingdom</SelectItem>
-            <SelectItem value="japan">Japan</SelectItem>
-            {/* Add more countries as needed */}
+            <SelectItem value="nyc">New York City</SelectItem>
+            <SelectItem value="la">Los Angeles</SelectItem>
+            <SelectItem value="chicago">Chicago</SelectItem>
           </SelectContent>
         </Select>
       </div>
       <div className="space-y-2">
+        <Label htmlFor="currentLocation">Current Location</Label>
+        <Input
+          id="currentLocation"
+          value={formData.currentLocation}
+          onChange={(e) => updateFormData({ currentLocation: e.target.value })}
+          required
+        />
+      </div>
+
+      <div className="space-y-2 md:col-span-2">
         <Label htmlFor="address">Address</Label>
         <Textarea
           id="address"
           value={formData.address}
           onChange={(e) => updateFormData({ address: e.target.value })}
+          required
+        />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="timeZone">Time Zone</Label>
+        <Select
+          value={formData.timeZone}
+          onValueChange={(value) => updateFormData({ timeZone: value })}
+        >
+          <SelectTrigger id="timeZone">
+            <SelectValue placeholder="Select a time zone" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="GMT">GMT</SelectItem>
+            <SelectItem value="EST">EST</SelectItem>
+            <SelectItem value="PST">PST</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="languages">Languages</Label>
+        <MultiSelect
+          id="languages"
+          options={[
+            { value: "ur", label: "Urdu" },
+            { value: "en", label: "English" },
+            { value: "fr", label: "French" },
+            { value: "ar", label: "Arabic" },
+          ]}
+          value={formData.languages}
+          onChange={(value: never) => updateFormData({ languages: value })}
+        />
+      </div>
+      <div className="space-y-2 md:col-span-2">
+        <Label>Social Links</Label>
+        <SocialLinks
+          value={formData.socialLinks}
+          onChange={(value: never) => updateFormData({ socialLinks: value })}
+          options={[
+            { value: "linkedin", label: "LinkedIn" },
+            { value: "facebook", label: "Facebook" },
+            { value: "instagram", label: "Instagram" },
+            { value: "github", label: "GitHub" },
+          ]}
+        />
+      </div>
+      <div className="space-y-2 md:col-span-2">
+        <Label htmlFor="personalWebsite">
+          Portfolio / Github Link (Optional)
+        </Label>
+        <Input
+          id="personalWebsite"
+          type="url"
+          value={formData.personalWebsite}
+          onChange={(e) => updateFormData({ personalWebsite: e.target.value })}
+        />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="educationLevel">Education Level</Label>
+        <Select
+          value={formData.educationLevel}
+          onValueChange={(value) => updateFormData({ educationLevel: value })}
+        >
+          <SelectTrigger id="educationLevel">
+            <SelectValue placeholder="Select education level" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="matric">Matric</SelectItem>
+            <SelectItem value="inter">Inter</SelectItem>
+            <SelectItem value="bachelors">Bachelors</SelectItem>
+            <SelectItem value="mphil">M.Phil</SelectItem>
+            <SelectItem value="phd">Ph.D</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="educationType">Education Type</Label>
+        <Input
+          id="educationType"
+          value={formData.educationType}
+          onChange={(e) => updateFormData({ educationType: e.target.value })}
           required
         />
       </div>
