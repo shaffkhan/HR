@@ -7,6 +7,7 @@ import DocumentUploads from "./DocumentUploads";
 import GeneralQuestions from "./GeneralQuestions";
 import PersonalDetails from "./PersonalDetails";
 import ProfessionalDetails from "./ProfessionalDetails";
+import { useRouter } from "next/navigation";
 
 const steps = [
   "Document Uploads",
@@ -16,6 +17,8 @@ const steps = [
 ];
 
 export default function StepperForm() {
+  const router = useRouter();
+
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
     // Personal Details
@@ -64,14 +67,14 @@ export default function StepperForm() {
       case 0:
         return (
           <DocumentUploads
-            formData={formData}
+            formData={formData as any}
             updateFormData={updateFormData}
           />
         );
       case 1:
         return (
           <PersonalDetails
-            formData={formData}
+            formData={formData as any}
             updateFormData={updateFormData}
           />
         );
@@ -143,7 +146,11 @@ export default function StepperForm() {
               Next
             </Button>
           ) : (
-            <Button type="submit" className="bg-[#2d3e50]">
+            <Button
+              type="submit"
+              className="bg-[#2d3e50]"
+              onClick={() => router.push("/interview")}
+            >
               Submit Application
             </Button>
           )}

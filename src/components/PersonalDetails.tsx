@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,7 +10,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CalendarIcon } from "lucide-react";
-import { MultiSelect } from "./MultiSelect";
 import { SocialLinks } from "./SocialLinks";
 
 interface PersonalDetailsProps {
@@ -24,7 +24,7 @@ interface PersonalDetailsProps {
     state: string;
     city: string;
     address: string;
-    nationality: string[];
+    nationality: string;
     currentLocation: string;
     languages: string[];
     socialLinks: { [key: string]: string };
@@ -97,19 +97,22 @@ export default function PersonalDetails({
       </div>
       <div className="space-y-2">
         <Label htmlFor="nationality">Nationality</Label>
-        <MultiSelect
-          id="nationality"
-          options={[
-            { value: "usa", label: "American" },
-            { value: "uk", label: "British" },
-            { value: "canada", label: "Canadian" },
-          ]}
+        <Select
           value={formData.nationality}
-          onChange={(value: never) => updateFormData({ nationality: value })}
-        />
+          onValueChange={(value: any) => updateFormData({ nationality: value })}
+        >
+          <SelectTrigger id="nationality">
+            <SelectValue placeholder="Select nationality" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="usa">American</SelectItem>
+            <SelectItem value="uk">British</SelectItem>
+            <SelectItem value="canada">Canadian</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="country">Country</Label>
+        <Label htmlFor="Nationality">Nationality</Label>
         <Select
           value={formData.country}
           onValueChange={(value) => updateFormData({ country: value })}
@@ -191,25 +194,24 @@ export default function PersonalDetails({
           </SelectContent>
         </Select>
       </div>
-      <div className="space-y-2">
+      {/* <div className="space-y-2">
         <Label htmlFor="languages">Languages</Label>
-        <MultiSelect
-          id="languages"
+        <Select
           options={[
             { value: "ur", label: "Urdu" },
             { value: "en", label: "English" },
             { value: "fr", label: "French" },
             { value: "ar", label: "Arabic" },
           ]}
-          value={formData.languages}
-          onChange={(value: never) => updateFormData({ languages: value })}
+          value={formData.languages as any}
+          onChange={(value: any) => updateFormData({ languages: value })}
         />
-      </div>
+      </div> */}
       <div className="space-y-2 md:col-span-2">
         <Label>Social Links</Label>
         <SocialLinks
           value={formData.socialLinks}
-          onChange={(value: never) => updateFormData({ socialLinks: value })}
+          onChange={(value: any) => updateFormData({ socialLinks: value })}
           options={[
             { value: "linkedin", label: "LinkedIn" },
             { value: "facebook", label: "Facebook" },
