@@ -89,7 +89,7 @@ export default function StepperForm() {
       case 3:
         return (
           <GeneralQuestions
-            formData={formData}
+            formData={formData as any}
             updateFormData={updateFormData}
           />
         );
