@@ -10,14 +10,14 @@ import ProfessionalDetails from "./ProfessionalDetails";
 import { useRouter } from "next/navigation";
 
 const steps = [
+  "Document Uploads",
   "Personal Details",
   "Professional Details",
-  "Document Uploads",
   "General Questions",
 ];
 
 export default function StepperForm() {
-  const router = useRouter()
+  const router = useRouter();
 
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
@@ -66,21 +66,21 @@ export default function StepperForm() {
     switch (currentStep) {
       case 0:
         return (
-          <PersonalDetails
+          <DocumentUploads
             formData={formData as any}
             updateFormData={updateFormData}
           />
         );
       case 1:
         return (
-          <ProfessionalDetails
-            formData={formData}
+          <PersonalDetails
+            formData={formData as any}
             updateFormData={updateFormData}
           />
         );
       case 2:
         return (
-          <DocumentUploads
+          <ProfessionalDetails
             formData={formData}
             updateFormData={updateFormData}
           />
@@ -146,7 +146,11 @@ export default function StepperForm() {
               Next
             </Button>
           ) : (
-            <Button type="submit" className="bg-[#2d3e50]" onClick={()=>router.push("/interview")}>
+            <Button
+              type="submit"
+              className="bg-[#2d3e50]"
+              onClick={() => router.push("/interview")}
+            >
               Submit Application
             </Button>
           )}
