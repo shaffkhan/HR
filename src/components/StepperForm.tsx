@@ -81,7 +81,7 @@ export default function StepperForm() {
       case 2:
         return (
           <ProfessionalDetails
-            formData={formData}
+            formData={formData as any}
             updateFormData={updateFormData}
           />
         );
